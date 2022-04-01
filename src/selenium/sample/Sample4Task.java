@@ -38,6 +38,24 @@ public class Sample4Task {
     public void enterNumber() throws Exception {
 //         TODO:
 //        enter a number under "Number"
+
+
+
+        driver.findElement(By.id("number")).clear();
+        driver.findElement(By.id("name")).sendKeys("22".toString());
+
+        assertFalse(driver.findElement(By.id("clear_result_button_number")).isEnabled());
+
+        assertFalse(driver.findElement(By.id("result_number")).isDisplayed());
+
+        driver.findElement(By.id("result_button_number")).click();
+
+        assertTrue(driver.findElement(By.id("result_number")).isDisplayed());
+
+
+
+
+
 //        check that button is not clickable "Clear Result"
 //        check that text is not displayed
 //        click on "Result" button
@@ -50,6 +68,12 @@ public class Sample4Task {
 
     @Test
     public void clickOnLink() throws Exception {
+
+        String homepage = "https://kristinek.github.io/site/";
+        assertEquals(base_url, driver.getCurrentUrl());
+        driver.findElement(By.id("homepage_link")).click();
+        assertEquals(base_url,driver.getCurrentUrl());
+        assertEquals(homepage, driver.getCurrentUrl());
 //         TODO:
 //        check current url is base_url
 //        click on "This is a link to Homepage"
