@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 
+import static org.junit.Assert.assertEquals;
+
 public class Sample6Task {
     WebDriver driver;
 
@@ -34,8 +36,23 @@ public class Sample6Task {
     public void findElementByXPath() throws Exception {
 //         TODO:
 //        2 ways to find text: "Heading 2 text":
+
+        String heading2 = "Heading 2 text";
+        assertEquals(heading2,driver.findElement(By.xpath("//*[@id='heading_2']")).getText());
+
+        assertEquals(heading2,driver.findElement(By.xpath("//h2[contains(text(),'"+heading2+"')]")).getText());
+
+
+
 //        1-2 ways to find text: "Test Text 1"
+        String testText1 = "Test Text 1";
+
+        assertEquals(testText1,driver.findElement(By.xpath("//div[@id='test1']/p[@class='test']")).getText());
+
+
 //        1-2 ways to find text: "Test Text 2"
+
+
 //        1-2 ways to find text: "Test Text 3"
 //        1-2 ways to find text: "Test Text 4"
 //        1-2 ways to find text: "Test Text 5"

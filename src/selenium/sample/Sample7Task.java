@@ -38,6 +38,31 @@ public class Sample7Task {
 
     @Test
     public void selectCheckBox() throws Exception {
+
+        WebElement opt1 = driver.findElement(By.id("vfb-6-0"));
+
+        WebElement opt2 = driver.findElement(By.id("vfb-6-1"));
+
+        WebElement opt3= driver.findElement(By.id("vfb-6-2"));
+
+        assertFalse(opt1.isSelected());
+
+        assertFalse(opt2.isSelected());
+
+        assertFalse(opt3.isSelected());
+
+        driver.findElement(By.id("vfb-6-1")).click();
+        assertFalse(opt1.isSelected());
+        assertFalse(opt3.isSelected());
+        assertTrue(opt2.isSelected());
+
+        driver.findElement(By.id("result_button_checkbox")).click();
+
+        assertEquals("You selected value(s): Option 2",driver.findElement(By.id("result_checkbox")).getText());
+
+        Thread.sleep(2000);
+
+
 //         TODO:
 //        check that none of the checkboxes are ticked
 //        tick  "Option 2"
@@ -50,6 +75,43 @@ public class Sample7Task {
 
     @Test
     public void selectRadioButton() throws Exception {
+
+
+        WebElement radiobutton1 = driver.findElement(By.id("vfb-7-1"));
+
+        WebElement radiobutton2 = driver.findElement(By.id("vfb-7-2"));
+
+        WebElement radiobutton3 = driver.findElement(By.id("vfb-7-3"));
+
+        assertFalse(radiobutton1.isSelected());
+
+        assertFalse(radiobutton2.isSelected());
+
+        assertFalse(radiobutton3.isSelected());
+
+        driver.findElement(By.id("vfb-7-3")).click();
+
+        assertFalse(radiobutton1.isSelected());
+
+        assertFalse(radiobutton2.isSelected());
+
+        assertTrue(radiobutton3.isSelected());
+
+        driver.findElement(By.id("vfb-7-1")).click();
+
+        assertTrue(radiobutton1.isSelected());
+
+        assertFalse(radiobutton2.isSelected());
+
+        assertFalse(radiobutton3.isSelected());
+
+        driver.findElement(By.id("result_button_ratio")).click();
+
+        Thread.sleep(2000);
+
+        assertEquals("You selected option: Option 1",driver.findElement(By.id("result_radio")).getText());
+
+
 //         TODO:
 //        check that none of the radio are selected
 //        select  "Option 3"
@@ -62,6 +124,25 @@ public class Sample7Task {
 
     @Test
     public void selectOption() throws Exception {
+
+
+        WebElement dropdown = driver.findElement(By.id("vfb-12"));
+        Select dropdownselect = new Select(dropdown);
+        List<WebElement> allSelections;
+        dropdownselect.selectByVisibleText("Option 3");
+        allSelections = dropdownselect.getAllSelectedOptions();
+        assertEquals(1,allSelections.size());
+        assertEquals("Option 3", allSelections.get(0).getText());
+        dropdownselect.selectByVisibleText("Option 2");
+        allSelections = dropdownselect.getAllSelectedOptions();
+        assertEquals(1,allSelections.size());
+        assertEquals("Option 2", allSelections.get(0).getText());
+
+
+
+        driver.findElement(By.id("vfb-12")).click();
+
+
 //        select "Option 3" in Select
 //        check that selected option is "Option 3"
 //        select "Option 2" in Select
